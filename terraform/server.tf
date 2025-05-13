@@ -18,10 +18,6 @@ resource "hcloud_ssh_key" "ssh_key_for_hetzner" {
   public_key = file("~/.ssh/server.pub")
 }
 
-resource "hcloud_network" "network" {
-  name     = "private-network"
-  ip_range = "10.0.0.0/16"
-}
 
 resource "hcloud_server" "nixos-server" {
   name              = "nixos-server"
@@ -37,10 +33,6 @@ resource "hcloud_server" "nixos-server" {
     "http" = "yes"
   }
 
- depends_on = [
-    hcloud_network.network
-  ]
-  
   public_net {
     ipv4_enabled = true
     ipv6_enabled = true
