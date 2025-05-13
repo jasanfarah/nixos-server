@@ -6,8 +6,11 @@
 
   disko.devices = import ./filesystem.nix "/dev/sda";
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader.grub = {
+    devices = [ "/dev/sda" ];
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
