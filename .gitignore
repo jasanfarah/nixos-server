@@ -10,6 +10,8 @@
 .terraform/
 .vagrant/
 
+*.tfvars
+
 # SSH Keys
 *.pem
 
