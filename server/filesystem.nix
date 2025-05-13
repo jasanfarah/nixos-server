@@ -1,62 +1,44 @@
+diskDevice:
+
 {
-  disko.devices = {
-    disk = {
-      main = {
-        device = "/dev/sda";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-            esp = {
-              size = "512M";
-              type = "EF00";
-              content = {
-                type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
-              };
-            };
-            lvm = {
-              size = "100%";
-              content = {
-                type = "lvm_pv";
-                vg = "main_vg";
-              };
-            };
+  disk.${diskDevice} = {
+    device = diskDevice;
+    type = "disk";
+    content = {
+      type = "table";
+      format = "gpt";
+      partitions = [
+        {
+          name = "boot";
+          start = "0";
+          end = "1M";
+          part-type = "primary";
+          flags = [ "bios_grub" ];
+        }
+        {
+          name = "ESP";
+          start = "1MiB";
+          end = "100MiB";
+          bootable = true;
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
           };
-        };
-      };
-    };
-    lvm_vg = {
-      main_vg = {
-        type = "lvm_vg";
-        lvs = {
-          root = {
-            size = "20G";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/";
-            };
+        }
+        {
+          name = "root";
+          start = "100MiB";
+          end = "100%";
+          part-type = "primary";
+          bootable = true;
+          content = {
+            type = "filesystem";
+            format = "ext4";
+            mountpoint = "/";
           };
-          var = {
-            size = "10G";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/var";
-            };
-          };
-          home = {
-            size = "100%FREE";
-            content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/home";
-            };
-          };
-        };
-      };
+        }
+      ];
     };
   };
 }

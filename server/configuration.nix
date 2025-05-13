@@ -2,8 +2,9 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
-    ./filesystem.nix
   ];
+
+  disko.devices = import ./filesystem.nix "/dev/sda";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
