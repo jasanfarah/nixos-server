@@ -87,3 +87,18 @@ hetzner_api_key = "your-api-key"
 ```bash
 terraform destroy
 ```
+
+### 3. NixOS prep
+As NixOS only remembers whats in the configuration. That also means that if we dont include our public key in the configuration then we cant really access the server anymore.
+
+To keep things simple we wont really use any tools for managing secrets like [sops](https://github.com/getsops/sops), [age](https://github.com/FiloSottile/age) or  [agenix](https://github.com/ryantm/agenix). 
+
+### 4. NixOS setup
+
+```bash
+nix run github:numtide/nixos-anywhere --
+root@your-ipv4-adress
+--flake .#server
+```
+
+### 4. NixOS setup
