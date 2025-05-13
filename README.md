@@ -91,14 +91,17 @@ terraform destroy
 ### 3. NixOS prep
 As NixOS only remembers whats in the configuration. That also means that if we dont include our public key in the configuration then we cant really access the server anymore.
 
-To keep things simple we wont really use any tools for managing secrets like [sops](https://github.com/getsops/sops), [age](https://github.com/FiloSottile/age) or  [agenix](https://github.com/ryantm/agenix). 
+To keep things simple we wont really use any tools for managing secrets like [sops](https://github.com/getsops/sops), [age](https://github.com/FiloSottile/age) or  [agenix](https://github.com/ryantm/agenix) but you should know their value. 
+
+In configuration.nix there 
 
 ### 4. NixOS setup
 
 ```bash
-nix run github:numtide/nixos-anywhere --
-root@your-ipv4-adress
---flake .#server
+nix run github:nix-community/nixos-anywhere -- --flake .#server --target-host root@your-ipv4-adress
 ```
+
+
+
 
 ### 4. NixOS setup
