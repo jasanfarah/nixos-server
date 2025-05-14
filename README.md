@@ -95,11 +95,21 @@ To keep things simple we wont really use any tools for managing secrets like [so
 
 To prepare our server and restrict SSH access to only us, please manually add your public ssh key in the [filewall](server/firewall.nix) configuration.
 ### 4. NixOS setup
+Now that you have added your own ssh key. We can now setup our server by running following command:
 
 ```bash
 nix run github:nix-community/nixos-anywhere -- --flake .#server --target-host root@your-ipv4-adress
 ```
 
+
+After a bit you should get a message that everything was setup and you can now try to ssh into the server.
+
+
+#### Optional
+
+Want to run a reverse proxy like caddy? Uncomment the line in [configuration.nix](server/configuration.nix#L8) to include the reverse proxy in our configuration.
+
+Check out the [reverse-proxy.nix](server/reverse-proxy.nix), and customize it to your needs. A little googling might be needed especially if you want to enable TLS.
 
 ### 5. NixOS deploy changes (Requires running NixOS)
 ```bash
