@@ -1,4 +1,4 @@
-# nix
+# nixos-server
 ## Objective
 
 Set up a server on Hetzner using Terraform.
@@ -91,10 +91,9 @@ terraform destroy
 ### 3. NixOS prep
 As NixOS only remembers whats in the configuration. That also means that if we dont include our public key in the configuration then we cant really access the server anymore.
 
-To keep things simple we wont really use any tools for managing secrets like [sops](https://github.com/getsops/sops), [age](https://github.com/FiloSottile/age) or  [agenix](https://github.com/ryantm/agenix) but you should know their value. 
+To keep things simple we wont really use any tools for managing secrets like [sops](https://github.com/getsops/sops), [age](https://github.com/FiloSottile/age) or  [agenix](https://github.com/ryantm/agenix), but you should know their value. 
 
-In configuration.nix there 
-
+To prepare our server and restrict SSH access to only us, please manually add your public ssh key in the [filewall](server/firewall.nix) configuration.
 ### 4. NixOS setup
 
 ```bash
@@ -102,6 +101,20 @@ nix run github:nix-community/nixos-anywhere -- --flake .#server --target-host ro
 ```
 
 
+### 5. NixOS deploy changes (Requires running NixOS)
+```bash
+nixos-rebuild switch --flake .#server --target-host root@your-ipv4-adress
+```
+
+Thoughts: 
+* Maybe setup bastion host which runs nixos to be able to run the command? 
+* Provide example of pull based approach and push based??
+* Learn more about morph and Colmena
 
 
-### 4. NixOS setup
+TODO:
+* Disable ssh for root, add another user
+* Add docker as non root
+* Persistence
+* More hardening
+
