@@ -4,6 +4,7 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     ./firewall.nix
     ./security.nix
+    ./docker.nix
 
   ];
 
