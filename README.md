@@ -1,4 +1,4 @@
-# nixos-server
+# nixos-server (wip)
 
 ## Requirements  
 - The nix package manager installed. [Install here](https://nixos.org/download/)
