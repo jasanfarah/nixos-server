@@ -2,7 +2,7 @@
   
   services.caddy = {
     enable = true;
-    virtualHosts."localhost" = {
+    virtualHosts.":80" = {
       extraConfig = ''
         root * /var/www/html
         file_server
