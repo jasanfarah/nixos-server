@@ -4,8 +4,8 @@
     (modulesPath + "/profiles/qemu-guest.nix")
     ./firewall.nix
     ./security.nix
-    ./docker.nix
-    ./reverse-proxy.nix
+    #    ./docker.nix
+    #    ./reverse-proxy.nix
   ];
 
   disko.devices = import ./filesystem.nix "/dev/sda";

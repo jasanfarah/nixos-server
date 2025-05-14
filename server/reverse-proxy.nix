@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  
+
   services.caddy = {
     enable = true;
     virtualHosts.":80" = {
