@@ -1,5 +1,5 @@
-# nixos-server (wip)
-
+# nixos-server 
+wip
 ## Requirements  
 - The nix package manager installed. [Install here](https://nixos.org/download/)
 - An active Hetzner account [Sign up here to get €20 in credit](https://hetzner.cloud/?ref=VxqsJ799eM9H)
